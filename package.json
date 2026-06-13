@@ -1,0 +1,16 @@
+{
+  "name": "luma-clone-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:db\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:db": "docker compose up",
+    "dev:server": "npm run dev --workspace=packages/backend",
+    "dev:client": "npm run dev --workspace=packages/frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
