@@ -5,8 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:db\" \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:db": "docker compose up",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "npm run dev --workspace=packages/backend",
     "dev:client": "npm run dev --workspace=packages/frontend"
   },
