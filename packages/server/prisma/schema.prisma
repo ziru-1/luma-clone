@@ -20,12 +20,13 @@ enum Role {
 
 model User {
   id         String   @id @default(uuid())
-  supabaseId String   @unique
+  supabaseId String   @unique @map("supabase_id")
   email      String   @unique
   name       String?
+  avatarUrl  String?  @map("avatar_url")
   role       Role     @default(GUEST)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
   @@map("users")
 }
