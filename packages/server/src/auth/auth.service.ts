@@ -18,4 +18,10 @@ export class AuthService {
       create: { supabaseId, email, name, avatarUrl },
     });
   }
+
+  async getUserById(supabaseId: string) {
+    return this.prisma.user.findUnique({
+      where: { supabaseId },
+    });
+  }
 }
