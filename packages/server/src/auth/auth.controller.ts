@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotFoundException,
-  Post,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import type { Request } from 'express';
 import { AuthService } from './auth.service';
 import { SyncUserDto } from './dto/sync-user.dto';
@@ -28,17 +20,7 @@ export class AuthController {
 
   @UseGuards(JwtGuard)
   @Get('me')
-  async getMe(@Req() req: Request) {
-    const supabaseId = req.user?.sub;
-    if (!supabaseId) {
-      throw new NotFoundException('Invalid token payload');
-    }
-
-    const user = await this.authService.getUserById(supabaseId);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return user;
+  getMe(@Req() req: Request) {
+    return req.dbUser;
   }
 }
