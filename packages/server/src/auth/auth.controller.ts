@@ -21,6 +21,6 @@ export class AuthController {
   @UseGuards(JwtGuard)
   @Get('me')
   getMe(@Req() req: Request) {
-    return req.dbUser;
+    return this.authService.toUserDto(req.dbUser!);
   }
 }
