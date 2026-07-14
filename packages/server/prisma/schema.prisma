@@ -29,5 +29,25 @@ model User {
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
 
+  hostedEvents Event[]
+
   @@map("users")
+}
+
+model Event {
+  id               String   @id @default(uuid())
+  hostId           String   @map("host_id")
+  host             User     @relation(fields: [hostId], references: [id])
+  name             String
+  isPublic         Boolean  @map("is_public")
+  startTime        DateTime @map("start_time")
+  endTime          DateTime @map("end_time")
+  location         String
+  capacity         Int?
+  priceCents       Int?     @map("price_cents")
+  requiresApproval Boolean  @map("requires_approval")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@map("events")
 }
