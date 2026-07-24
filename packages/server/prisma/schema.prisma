@@ -65,7 +65,7 @@ enum EventRole {
 model EventMember {
   id        String    @id @default(uuid())
   eventId   String    @map("event_id")
-  event     Event     @relation(fields: [eventId], references: [id])
+  event     Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
   userId    String    @map("user_id")
   user      User      @relation(fields: [userId], references: [id])
   role      EventRole
@@ -86,7 +86,7 @@ enum AttendeeStatus {
 model Attendee {
   id        String         @id @default(uuid())
   eventId   String         @map("event_id")
-  event     Event          @relation(fields: [eventId], references: [id])
+  event     Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
   userId    String         @map("user_id")
   user      User           @relation(fields: [userId], references: [id])
   status    AttendeeStatus
